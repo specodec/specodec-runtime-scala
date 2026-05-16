@@ -1,4 +1,0 @@
-json = {};
-json.point = {};
-json.point.lat = -3.14159265358979E0;
-json.point.lng = 0E0;

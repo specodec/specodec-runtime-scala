@@ -1,0 +1,7 @@
+.tests-cache/
+node_modules/
+output/
+src/generated/
+emit_gen/
+.scala-build/
+.bsp/

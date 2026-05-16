@@ -1,0 +1,10 @@
+tests/interop/emit/
+tests/interop/output/
+tests/interop/src/generated/
+tests/interop/node_modules/
+tests/interop/package-lock.json
+tests/ryu/.scala-build/
+tests/ryu/.bsp/
+project/target/
+.scala-build/
+.bsp/
