@@ -1,0 +1,3 @@
+package specodec
+
+object SpecUndefined
