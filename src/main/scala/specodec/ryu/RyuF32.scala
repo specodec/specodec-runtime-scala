@@ -75,10 +75,10 @@ def float32ToString(f: Float): String = {
     if (q <= 9) {
       if (mv % 5L == 0L) {
         vrIsTrailingZeros = multipleOfPowerOf5_32(mv.toInt, q)
+      } else if (acceptBounds) {
         vmIsTrailingZeros = multipleOfPowerOf5_32(mm.toInt, q)
-        if (multipleOfPowerOf5_32(mp.toInt, q)) {
-          vp -= 1L
-        }
+      } else if (multipleOfPowerOf5_32(mp.toInt, q)) {
+        vp -= 1L
       }
     }
   } else {
