@@ -56,7 +56,7 @@ def float32ToString(f: Float): String = {
   if (e2 >= 0) {
     val q = log10Pow2(e2)
     e10 = q
-    val k = FLOAT_POW5_INV_BITCOUNT + pow5bits(q) - 1
+    val k = FLOAT_POW5_INV_BITCOUNT + pow5Bits(q) - 1
     val i = -e2 + q + k
 
     vr = mulShift32(mv, FLOAT_POW5_INV_SPLIT(q) + 1L, i)
@@ -64,7 +64,7 @@ def float32ToString(f: Float): String = {
     vm = mulShift32(mm, FLOAT_POW5_INV_SPLIT(q) + 1L, i)
 
     if (q != 0 && (vp - 1L) / 10L <= vm / 10L) {
-      val l = FLOAT_POW5_INV_BITCOUNT + pow5bits(q - 1) - 1
+      val l = FLOAT_POW5_INV_BITCOUNT + pow5Bits(q - 1) - 1
       lastDigit = mulShift32(
         mv,
         FLOAT_POW5_INV_SPLIT(q - 1) + 1L,
@@ -85,7 +85,7 @@ def float32ToString(f: Float): String = {
     val q = log10Pow5(-e2)
     e10 = q + e2
     val i = -e2 - q
-    val k = pow5bits(i) - FLOAT_POW5_BITCOUNT
+    val k = pow5Bits(i) - FLOAT_POW5_BITCOUNT
     val j = q - k
 
     vr = mulShift32(mv, FLOAT_POW5_SPLIT(i), j)
@@ -93,7 +93,7 @@ def float32ToString(f: Float): String = {
     vm = mulShift32(mm, FLOAT_POW5_SPLIT(i), j)
 
     if (q != 0 && (vp - 1L) / 10L <= vm / 10L) {
-      val j2 = q - 1 - (pow5bits(i + 1) - FLOAT_POW5_BITCOUNT)
+      val j2 = q - 1 - (pow5Bits(i + 1) - FLOAT_POW5_BITCOUNT)
       lastDigit = mulShift32(mv, FLOAT_POW5_SPLIT(i + 1), j2) % 10L
     }
 

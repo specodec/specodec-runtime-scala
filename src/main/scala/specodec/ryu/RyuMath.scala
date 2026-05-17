@@ -1,7 +1,7 @@
 package specodec.ryu
 
 object RyuMath {
-  def pow5bits(e: Int): Int = e * 1217359 / 524288 + 1
+  def pow5Bits(e: Int): Int = e * 1217359 / 524288 + 1
   def log10Pow2(e: Int): Int = e * 78913 / 262144
   def log10Pow5(e: Int): Int = e * 732923 / 1048576
 
