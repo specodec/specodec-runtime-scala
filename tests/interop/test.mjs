@@ -4,7 +4,7 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
 const __dir = dirname(fileURLToPath(import.meta.url));
-const CACHE = join(__dir, ".tests-cache");
+const VEC_DIR = join(__dir, "vectors");
 const GENERATED = join(__dir, "src", "generated");
 const OUT_DIR = join(__dir, "output");
 const RUNTIME = join(__dir, "..", "..", "src", "main", "scala", "specodec");
@@ -14,14 +14,11 @@ function ensure(dir) { if (!existsSync(dir)) mkdirSync(dir, { recursive: true })
 
 console.log("\n=== Step 0: Install deps ===");
 run(`cd ${__dir} && npm install`);
-run(`cd ${CACHE} && npm install`);
-run(`cd ${CACHE} && node gen_types.mjs`);
-const VEC_DIR = join(CACHE, "vectors");
 
 console.log("\n=== Step 1: Generate Scala code ===");
 if (existsSync(GENERATED)) rmSync(GENERATED, { recursive: true });
 ensure(GENERATED);
-run(`cd ${__dir} && node_modules/.bin/tsp compile ${CACHE}/alltypes.tsp --emit=@specodec/typespec-emitter-scala --option @specodec/typespec-emitter-scala.emitter-output-dir=${GENERATED}`);
+run(`cd ${__dir} && node_modules/.bin/tsp compile ${__dir}/alltypes.tsp --emit=@specodec/typespec-emitter-scala --option @specodec/typespec-emitter-scala.emitter-output-dir=${GENERATED}`);
 
 console.log("\n=== Step 2: Generate test runner ===");
 run(`cd ${__dir} && VEC_DIR=${VEC_DIR} node generate_emit_runner.mjs`);
